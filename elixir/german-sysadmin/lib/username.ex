@@ -1,19 +1,19 @@
 defmodule Username do
   @spec sanitize(char()) :: charlist()
-  def sanitize(~c""), do: ~c""
-  def sanitize([hd | tail]) when hd in 97..122, do: to_charlist([hd]) ++ sanitize(tail)
+  def sanitize([]), do: []
 
   def sanitize([hd | tail]) do
-    latin =
+    cleaned =
       case hd do
-        hd when [hd] == ~c"ä" -> ~c"ae"
-        hd when [hd] == ~c"ö" -> ~c"oe"
-        hd when [hd] == ~c"ü" -> ~c"ue"
-        hd when [hd] == ~c"ß" -> ~c"ss"
-        hd when [hd] == ~c"_" -> ~c"_"
+        ?ä -> ~c"ae"
+        ?ö -> ~c"oe"
+        ?ü -> ~c"ue"
+        ?ß -> ~c"ss"
+        ?_ -> ~c"_"
+        hd when hd in 97..122 -> [hd]
         _ -> ~c""
       end
 
-    latin ++ sanitize(tail)
+    cleaned ++ sanitize(tail)
   end
 end
