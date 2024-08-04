@@ -12,12 +12,12 @@ main =
     Test.Runner.Node.run
         { runs = 100
         , report = ConsoleReport UseColor
-        , seed = 400785328753317
+        , seed = 306104434361162
         , processes = 8
         , globs =
             []
         , paths =
-            [ "/home/kemel/devel/estudo/exercism/elm/bettys-bike-shop/tests/Tests.elm"
+            [ "/home/kemel/devel/estudo/exercism/elm/annalyns-infiltration/tests/Tests.elm"
             ]
         }
         [ ( "Tests"

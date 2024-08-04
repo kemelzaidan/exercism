@@ -7601,9 +7601,21 @@ var $author$project$Test$Runner$Node$run = F2(
 				});
 		}
 	});
-var $elm_explorations$test$Expect$Absolute = function (a) {
-	return {$: 'Absolute', a: a};
+var $author$project$AnnalynsInfiltration$canFastAttack = function (knightIsAwake) {
+	return knightIsAwake ? false : true;
 };
+var $author$project$AnnalynsInfiltration$canFreePrisoner = F4(
+	function (knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent) {
+		return ((!knightIsAwake) && ((!archerIsAwake) && prisonerIsAwake)) ? true : ((knightIsAwake && ((!archerIsAwake) && petDogIsPresent)) ? true : (((!knightIsAwake) && ((!archerIsAwake) && petDogIsPresent)) ? true : false));
+	});
+var $author$project$AnnalynsInfiltration$canSignalPrisoner = F2(
+	function (archerIsAwake, prisonerIsAwake) {
+		return ((!archerIsAwake) && prisonerIsAwake) ? true : false;
+	});
+var $author$project$AnnalynsInfiltration$canSpy = F3(
+	function (knightIsAwake, archerIsAwake, prisonerIsAwake) {
+		return (knightIsAwake || (archerIsAwake || prisonerIsAwake)) ? true : false;
+	});
 var $elm_explorations$test$Test$Runner$Failure$Equality = F2(
 	function (a, b) {
 		return {$: 'Equality', a: a, b: b};
@@ -7648,11 +7660,8 @@ var $elm_explorations$test$Expect$equateWith = F4(
 		return usesFloats ? $elm_explorations$test$Expect$fail(floatError) : A5($elm_explorations$test$Expect$testWith, $elm_explorations$test$Test$Runner$Failure$Equality, reason, comparison, b, a);
 	});
 var $elm_explorations$test$Expect$equal = A2($elm_explorations$test$Expect$equateWith, 'Expect.equal', $elm$core$Basics$eq);
-var $author$project$BettysBikeShop$penceToPounds = function (pence) {
-	return pence / 100;
-};
-var $author$project$BettysBikeShop$poundsToString = function (pounds) {
-	return '£' + $elm$core$String$fromFloat(pounds);
+var $author$project$AnnalynsInfiltration$stealthAttackDamage = function (annalynIsDetected) {
+	return annalynIsDetected ? 7 : 12;
 };
 var $elm_explorations$test$Test$Internal$blankDescriptionFailure = $elm_explorations$test$Test$Internal$failNow(
 	{
@@ -7673,84 +7682,9 @@ var $elm_explorations$test$Test$test = F2(
 						]);
 				}));
 	});
-var $elm$core$Basics$truncate = _Basics_truncate;
-var $elm_explorations$test$Test$Runner$Failure$Comparison = F2(
-	function (a, b) {
-		return {$: 'Comparison', a: a, b: b};
-	});
-var $elm_explorations$test$Expect$compareWith = $elm_explorations$test$Expect$testWith($elm_explorations$test$Test$Runner$Failure$Comparison);
-var $elm_explorations$test$Expect$absolute = function (tolerance) {
-	switch (tolerance.$) {
-		case 'Absolute':
-			var val = tolerance.a;
-			return val;
-		case 'AbsoluteOrRelative':
-			var val = tolerance.a;
-			return val;
-		default:
-			return 0;
-	}
-};
-var $elm_explorations$test$Expect$relative = function (tolerance) {
-	switch (tolerance.$) {
-		case 'Relative':
-			var val = tolerance.a;
-			return val;
-		case 'AbsoluteOrRelative':
-			var val = tolerance.b;
-			return val;
-		default:
-			return 0;
-	}
-};
-var $elm_explorations$test$Expect$nonNegativeToleranceError = F3(
-	function (tolerance, name, result) {
-		return (($elm_explorations$test$Expect$absolute(tolerance) < 0) && ($elm_explorations$test$Expect$relative(tolerance) < 0)) ? $elm_explorations$test$Test$Expectation$fail(
-			{description: 'Expect.' + (name + ' was given negative absolute and relative tolerances'), reason: $elm_explorations$test$Test$Runner$Failure$Custom}) : (($elm_explorations$test$Expect$absolute(tolerance) < 0) ? $elm_explorations$test$Test$Expectation$fail(
-			{description: 'Expect.' + (name + ' was given a negative absolute tolerance'), reason: $elm_explorations$test$Test$Runner$Failure$Custom}) : (($elm_explorations$test$Expect$relative(tolerance) < 0) ? $elm_explorations$test$Test$Expectation$fail(
-			{description: 'Expect.' + (name + ' was given a negative relative tolerance'), reason: $elm_explorations$test$Test$Runner$Failure$Custom}) : result));
-	});
-var $elm$core$Basics$abs = function (n) {
-	return (n < 0) ? (-n) : n;
-};
-var $elm_explorations$test$Expect$withinCompare = F3(
-	function (tolerance, a, b) {
-		var withinRelativeTolerance = ((_Utils_cmp(
-			a - $elm$core$Basics$abs(
-				a * $elm_explorations$test$Expect$relative(tolerance)),
-			b) < 1) && (_Utils_cmp(
-			b,
-			a + $elm$core$Basics$abs(
-				a * $elm_explorations$test$Expect$relative(tolerance))) < 1)) || ((_Utils_cmp(
-			b - $elm$core$Basics$abs(
-				b * $elm_explorations$test$Expect$relative(tolerance)),
-			a) < 1) && (_Utils_cmp(
-			a,
-			b + $elm$core$Basics$abs(
-				b * $elm_explorations$test$Expect$relative(tolerance))) < 1));
-		var withinAbsoluteTolerance = (_Utils_cmp(
-			a - $elm_explorations$test$Expect$absolute(tolerance),
-			b) < 1) && (_Utils_cmp(
-			b,
-			a + $elm_explorations$test$Expect$absolute(tolerance)) < 1);
-		return _Utils_eq(a, b) || (withinAbsoluteTolerance || withinRelativeTolerance);
-	});
-var $elm_explorations$test$Expect$within = F3(
-	function (tolerance, lower, upper) {
-		return A3(
-			$elm_explorations$test$Expect$nonNegativeToleranceError,
-			tolerance,
-			'within',
-			A4(
-				$elm_explorations$test$Expect$compareWith,
-				'Expect.within ' + $elm_explorations$test$Test$Internal$toString(tolerance),
-				$elm_explorations$test$Expect$withinCompare(tolerance),
-				lower,
-				upper));
-	});
 var $author$project$Tests$tests = A2(
 	$elm_explorations$test$Test$describe,
-	'BettysBikeShop',
+	'AnnalynsInfiltration',
 	_List_fromArray(
 		[
 			A2(
@@ -7760,9 +7694,23 @@ var $author$project$Tests$tests = A2(
 				[
 					A2(
 					$elm_explorations$test$Test$test,
-					'penceToPounds has been imported',
+					'Cannot execute fast attack if knight is awake',
 					function (_v0) {
-						return $elm_explorations$test$Expect$pass;
+						var knightIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							$author$project$AnnalynsInfiltration$canFastAttack(knightIsAwake));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can execute fast attack if knight is sleeping',
+					function (_v1) {
+						var knightIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							$author$project$AnnalynsInfiltration$canFastAttack(knightIsAwake));
 					})
 				])),
 			A2(
@@ -7772,23 +7720,99 @@ var $author$project$Tests$tests = A2(
 				[
 					A2(
 					$elm_explorations$test$Test$test,
-					'599 pence should be 5.99 pounds',
-					function (_v1) {
-						return A3(
-							$elm_explorations$test$Expect$within,
-							$elm_explorations$test$Expect$Absolute(0.001),
-							5.99,
-							$author$project$BettysBikeShop$penceToPounds(599 | 0));
+					'Cannot spy if everyone is sleeping',
+					function (_v2) {
+						var prisonerIsAwake = false;
+						var knightIsAwake = false;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A3($author$project$AnnalynsInfiltration$canSpy, knightIsAwake, archerIsAwake, prisonerIsAwake));
 					}),
 					A2(
 					$elm_explorations$test$Test$test,
-					'33 pence should be 0.33 pounds',
-					function (_v2) {
-						return A3(
-							$elm_explorations$test$Expect$within,
-							$elm_explorations$test$Expect$Absolute(0.001),
-							0.33,
-							$author$project$BettysBikeShop$penceToPounds(33 | 0));
+					'Can spy if everyone but knight is sleeping',
+					function (_v3) {
+						var prisonerIsAwake = false;
+						var knightIsAwake = true;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A3($author$project$AnnalynsInfiltration$canSpy, knightIsAwake, archerIsAwake, prisonerIsAwake));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can spy if everyone but archer is sleeping',
+					function (_v4) {
+						var prisonerIsAwake = false;
+						var knightIsAwake = false;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A3($author$project$AnnalynsInfiltration$canSpy, knightIsAwake, archerIsAwake, prisonerIsAwake));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can spy if everyone but prisoner is sleeping',
+					function (_v5) {
+						var prisonerIsAwake = true;
+						var knightIsAwake = false;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A3($author$project$AnnalynsInfiltration$canSpy, knightIsAwake, archerIsAwake, prisonerIsAwake));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can spy if only knight is sleeping',
+					function (_v6) {
+						var prisonerIsAwake = true;
+						var knightIsAwake = false;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A3($author$project$AnnalynsInfiltration$canSpy, knightIsAwake, archerIsAwake, prisonerIsAwake));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can spy if only archer is sleeping',
+					function (_v7) {
+						var prisonerIsAwake = true;
+						var knightIsAwake = true;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A3($author$project$AnnalynsInfiltration$canSpy, knightIsAwake, archerIsAwake, prisonerIsAwake));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can spy if only prisoner is sleeping',
+					function (_v8) {
+						var prisonerIsAwake = false;
+						var knightIsAwake = true;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A3($author$project$AnnalynsInfiltration$canSpy, knightIsAwake, archerIsAwake, prisonerIsAwake));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can spy if everyone is awake',
+					function (_v9) {
+						var prisonerIsAwake = true;
+						var knightIsAwake = true;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A3($author$project$AnnalynsInfiltration$canSpy, knightIsAwake, archerIsAwake, prisonerIsAwake));
 					})
 				])),
 			A2(
@@ -7798,21 +7822,287 @@ var $author$project$Tests$tests = A2(
 				[
 					A2(
 					$elm_explorations$test$Test$test,
-					'5.99 pounds should be formatted as £5.99',
-					function (_v3) {
+					'Can signal prisoner if archer is sleeping and prisoner is awake',
+					function (_v10) {
+						var prisonerIsAwake = true;
+						var archerIsAwake = false;
 						return A2(
 							$elm_explorations$test$Expect$equal,
-							'£5.99',
-							$author$project$BettysBikeShop$poundsToString(5.99));
+							true,
+							A2($author$project$AnnalynsInfiltration$canSignalPrisoner, archerIsAwake, prisonerIsAwake));
 					}),
 					A2(
 					$elm_explorations$test$Test$test,
-					'0.33 pounds should be formatted as £0.33',
-					function (_v4) {
+					'Cannot signal prisoner if archer is awake and prisoner is sleeping',
+					function (_v11) {
+						var prisonerIsAwake = false;
+						var archerIsAwake = true;
 						return A2(
 							$elm_explorations$test$Expect$equal,
-							'£0.33',
-							$author$project$BettysBikeShop$poundsToString(0.33));
+							false,
+							A2($author$project$AnnalynsInfiltration$canSignalPrisoner, archerIsAwake, prisonerIsAwake));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot signal prisoner if archer and prisoner are both sleeping',
+					function (_v12) {
+						var prisonerIsAwake = false;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A2($author$project$AnnalynsInfiltration$canSignalPrisoner, archerIsAwake, prisonerIsAwake));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot signal prisoner if archer and prisoner are both awake',
+					function (_v13) {
+						var prisonerIsAwake = true;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A2($author$project$AnnalynsInfiltration$canSignalPrisoner, archerIsAwake, prisonerIsAwake));
+					})
+				])),
+			A2(
+			$elm_explorations$test$Test$describe,
+			'4',
+			_List_fromArray(
+				[
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if everyone is awake and pet dog is present',
+					function (_v14) {
+						var prisonerIsAwake = true;
+						var petDogIsPresent = true;
+						var knightIsAwake = true;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if everyone is awake and pet dog is absent',
+					function (_v15) {
+						var prisonerIsAwake = true;
+						var petDogIsPresent = false;
+						var knightIsAwake = true;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can release prisoner if everyone is asleep and pet dog is present',
+					function (_v16) {
+						var prisonerIsAwake = false;
+						var petDogIsPresent = true;
+						var knightIsAwake = false;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if everyone is asleep and pet dog is absent',
+					function (_v17) {
+						var prisonerIsAwake = false;
+						var petDogIsPresent = false;
+						var knightIsAwake = false;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can release prisoner if only prisoner is awake and pet dog is present',
+					function (_v18) {
+						var prisonerIsAwake = true;
+						var petDogIsPresent = true;
+						var knightIsAwake = false;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can release prisoner if only prisoner is awake and pet dog is absent',
+					function (_v19) {
+						var prisonerIsAwake = true;
+						var petDogIsPresent = false;
+						var knightIsAwake = false;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if only archer is awake and pet dog is present',
+					function (_v20) {
+						var prisonerIsAwake = false;
+						var petDogIsPresent = true;
+						var knightIsAwake = false;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if only archer is awake and pet dog is absent',
+					function (_v21) {
+						var prisonerIsAwake = false;
+						var petDogIsPresent = false;
+						var knightIsAwake = false;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can release prisoner if only knight is awake and pet dog is present',
+					function (_v22) {
+						var prisonerIsAwake = false;
+						var petDogIsPresent = true;
+						var knightIsAwake = true;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if only knight is awake and pet dog is absent',
+					function (_v23) {
+						var prisonerIsAwake = false;
+						var petDogIsPresent = false;
+						var knightIsAwake = true;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if only knight is asleep and pet dog is present',
+					function (_v24) {
+						var prisonerIsAwake = true;
+						var petDogIsPresent = true;
+						var knightIsAwake = false;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if only knight is asleep and pet dog is absent',
+					function (_v25) {
+						var prisonerIsAwake = true;
+						var petDogIsPresent = false;
+						var knightIsAwake = false;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Can release prisoner if only archer is asleep and pet dog is present',
+					function (_v26) {
+						var prisonerIsAwake = true;
+						var petDogIsPresent = true;
+						var knightIsAwake = true;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							true,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if only archer is asleep and pet dog is absent',
+					function (_v27) {
+						var prisonerIsAwake = true;
+						var petDogIsPresent = false;
+						var knightIsAwake = true;
+						var archerIsAwake = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if only prisoner is asleep and pet dog is present',
+					function (_v28) {
+						var prisonerIsAwake = false;
+						var petDogIsPresent = true;
+						var knightIsAwake = true;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Cannot release prisoner if only prisoner is asleep and pet dog is absent',
+					function (_v29) {
+						var prisonerIsAwake = false;
+						var petDogIsPresent = false;
+						var knightIsAwake = true;
+						var archerIsAwake = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							false,
+							A4($author$project$AnnalynsInfiltration$canFreePrisoner, knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent));
+					})
+				])),
+			A2(
+			$elm_explorations$test$Test$describe,
+			'5',
+			_List_fromArray(
+				[
+					A2(
+					$elm_explorations$test$Test$test,
+					'Annalyn does 12 damage if undetected',
+					function (_v30) {
+						var annalynIsDetected = false;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							12,
+							$author$project$AnnalynsInfiltration$stealthAttackDamage(annalynIsDetected));
+					}),
+					A2(
+					$elm_explorations$test$Test$test,
+					'Annalyn does 7 damage if detected',
+					function (_v31) {
+						var annalynIsDetected = true;
+						return A2(
+							$elm_explorations$test$Expect$equal,
+							7,
+							$author$project$AnnalynsInfiltration$stealthAttackDamage(annalynIsDetected));
 					})
 				]))
 		]));
@@ -7821,11 +8111,11 @@ var $author$project$Test$Generated$Main$main = A2(
 	{
 		globs: _List_Nil,
 		paths: _List_fromArray(
-			['/home/kemel/devel/estudo/exercism/elm/bettys-bike-shop/tests/Tests.elm']),
+			['/home/kemel/devel/estudo/exercism/elm/annalyns-infiltration/tests/Tests.elm']),
 		processes: 8,
 		report: $author$project$Test$Reporter$Reporter$ConsoleReport($author$project$Console$Text$UseColor),
 		runs: 100,
-		seed: 400785328753317
+		seed: 306104434361162
 	},
 	_List_fromArray(
 		[
@@ -7839,7 +8129,7 @@ var $author$project$Test$Generated$Main$main = A2(
 _Platform_export({'Test':{'Generated':{'Main':{'init':$author$project$Test$Generated$Main$main($elm$json$Json$Decode$int)(0)}}}});}(this));
 return this.Elm;
 })({});
-var pipeFilename = "/tmp/elm_test-48762.sock";
+var pipeFilename = "/tmp/elm_test-7574.sock";
 var net = require('net'),
   client = net.createConnection(pipeFilename);
 
