@@ -5,56 +5,36 @@ defmodule Plot do
 end
 
 defmodule CommunityGarden do
-  def start(opts \\ []) do
-    initial_state = %{
-      plots: [],
-      next_id: 1,
-      deleted_ids: []
-    }
-
-    Agent.start_link(fn -> initial_state end, opts)
+  def start() do
+    Agent.start(fn -> %{plots: [], index: 0} end)
   end
 
   def list_registrations(pid) do
-    state = Agent.get(pid, fn state -> state end)
-    Enum.filter(state.plots, fn plots -> plots.plot_id not in state.deleted_ids end)
+    Agent.get(pid, fn %{plots: plots} -> plots end)
   end
 
   def register(pid, register_to) do
-    Agent.get_and_update(pid, fn state ->
-      new_plot = %Plot{plot_id: state.next_id, registered_to: register_to}
-
-      new_state = %{
-        plots: [new_plot | state.plots],
-        next_id: state.next_id + 1,
-        deleted_ids: state.deleted_ids
-      }
-
-      {new_plot, new_state}
+    Agent.get_and_update(pid, fn %{plots: plots, index: index} ->
+      index = index + 1
+      plot = %Plot{plot_id: index, registered_to: register_to } 
+      {plot, %{plots: [plot | plots], index: index} }  
     end)
   end
 
   def release(pid, plot_id) do
-    Agent.get_and_update(pid, fn state ->
-      new_state = %{
-        plots: state.plots,
-        next_id: state.next_id,
-        deleted_ids: [plot_id | state.deleted_ids]
-      }
-
-      {state, new_state}
+    Agent.cast(pid, fn %{plots: plots} = status ->
+      plots = Enum.filter(plots, fn %{plot_id: p} -> p !== plot_id
     end)
-
-    :ok
+    %{status | plots:  plots} end)
   end
 
   def get_registration(pid, plot_id) do
-    plot = list_registrations(pid) |> Enum.find(fn plot -> plot.plot_id == plot_id end)
-
-    if match?(%Plot{}, plot) do
-      plot
-    else
-      {:not_found, "plot is unregistered"}
-    end
+     Agent.get(pid, fn %{plots: plots} -> 
+        plots
+        |> Enum.find(
+          {:not_found, "plot is unregistered"}, fn %{plot_id: p} -> p === plot_id
+        end)
+      end)
   end
 end
+
